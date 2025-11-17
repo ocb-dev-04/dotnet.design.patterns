@@ -1,0 +1,13 @@
+﻿using Factory.Abstractions;
+using Factory.Implementations;
+
+namespace Factory.Factory;
+
+// STEP 4: Concrete Creators
+public class SmsNotificationFactory : NotificationFactory
+{
+    public override INotification CreateNotification()
+    {
+        return new SmsNotification();
+    }
+}
