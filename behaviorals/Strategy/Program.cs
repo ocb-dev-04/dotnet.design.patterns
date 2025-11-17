@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Strategy.Services;
 using Strategy.Strategies;
+using Strategy.Strategies.Abstractions;
 using Strategy.Workers;
 
 await Host.CreateDefaultBuilder(args)

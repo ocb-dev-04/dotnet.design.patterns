@@ -1,5 +1,6 @@
 ﻿using Strategy.Enums;
 using Strategy.Models;
+using Strategy.Strategies.Abstractions;
 
 namespace Strategy.Strategies;
 

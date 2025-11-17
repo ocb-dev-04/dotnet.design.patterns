@@ -1,7 +1,7 @@
 ﻿using Strategy.Enums;
 using Strategy.Models;
 
-namespace Strategy.Strategies;
+namespace Strategy.Strategies.Abstractions;
 
 // Explanation: Interface defines contract for all notification strategies
 // This allows dependency injection and polymorphism

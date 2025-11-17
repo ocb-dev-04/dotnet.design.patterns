@@ -1,5 +1,5 @@
 ﻿using Strategy.Models;
-using Strategy.Strategies;
+using Strategy.Strategies.Abstractions;
 
 namespace Strategy.Services;
 
