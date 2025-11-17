@@ -20,27 +20,46 @@ ADAPTER PATTERN
 // but you need to integrate third-party payment libraries with different interfaces
 
 
-Console.WriteLine("=== Using Stripe (via Adapter) ===");
+// STEP 2: Adaptees (Third-party classes with incompatible interfaces)
+// Explanation: These are external libraries you cannot modify
 
-// Create Stripe service and adapter
-var stripeService = new StripePaymentService();
-IPaymentProcessor stripeAdapter = new StripePaymentAdapter(stripeService);
 
-// Client uses the adapter
-var paymentService1 = new PaymentService(stripeAdapter);
-paymentService1.ProcessOrder(99.99m, "4242424242424242");
-await paymentService1.ProcessRefund("ch_123", 50.00m);
 
-Console.WriteLine("\n" + new string('=', 50) + "\n");
-Console.WriteLine("=== Using PayPal (via Adapter) ===");
 
-// Switch to PayPal - same client code works!
-var paypalGateway = new PayPalPaymentGateway();
-IPaymentProcessor paypalAdapter = new PayPalPaymentAdapter(paypalGateway, "merchant@example.com");
+// Third-party Library 1: Stripe
+public class StripePaymentService
+{
+    // Different method names and parameters
+    public StripeResponse Charge(StripeChargeRequest request)
+    {
+        Console.WriteLine($"[Stripe] Charging ${request.AmountInCents / 100.0}");
+        Console.WriteLine($"[Stripe] Card: {request.Source.Substring(0, 4)}****");
 
-var paymentService2 = new PaymentService(paypalAdapter);
-paymentService2.ProcessOrder(149.99m, "5555555555554444");
-await paymentService2.ProcessRefund("PAYPAL-123", 75.00m);
+        // Simulate Stripe API call
+        return new StripeResponse
+        {
+            Id = $"ch_{Guid.NewGuid():N}",
+            Status = "succeeded",
+            AmountCharged = request.AmountInCents
+        };
+    }
+
+    public bool VerifyCard(string token)
+    {
+        Console.WriteLine($"[Stripe] Verifying card token: {token}");
+        return token.Length >= 16;
+    }
+
+    public StripeRefund CreateRefund(string chargeId, int amountInCents)
+    {
+        Console.WriteLine($"[Stripe] Creating refund for {chargeId}");
+        return new StripeRefund
+        {
+            Id = $"re_{Guid.NewGuid():N}",
+            Status = "succeeded"
+        };
+    }
+}
 
 // OUTPUT:
 /*

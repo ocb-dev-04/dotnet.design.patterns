@@ -19,28 +19,16 @@ ADAPTER PATTERN
 // SCENARIO: Your application expects IPaymentProcessor interface,
 // but you need to integrate third-party payment libraries with different interfaces
 
+// STEP 1: Target Interface (What your application expects)
+// Explanation: This is YOUR application's interface
 
-Console.WriteLine("=== Using Stripe (via Adapter) ===");
-
-// Create Stripe service and adapter
-var stripeService = new StripePaymentService();
-IPaymentProcessor stripeAdapter = new StripePaymentAdapter(stripeService);
-
-// Client uses the adapter
-var paymentService1 = new PaymentService(stripeAdapter);
-paymentService1.ProcessOrder(99.99m, "4242424242424242");
-await paymentService1.ProcessRefund("ch_123", 50.00m);
-
-Console.WriteLine("\n" + new string('=', 50) + "\n");
-Console.WriteLine("=== Using PayPal (via Adapter) ===");
-
-// Switch to PayPal - same client code works!
-var paypalGateway = new PayPalPaymentGateway();
-IPaymentProcessor paypalAdapter = new PayPalPaymentAdapter(paypalGateway, "merchant@example.com");
-
-var paymentService2 = new PaymentService(paypalAdapter);
-paymentService2.ProcessOrder(149.99m, "5555555555554444");
-await paymentService2.ProcessRefund("PAYPAL-123", 75.00m);
+public class PaymentResult
+{
+    public bool Success { get; set; }
+    public string TransactionId { get; set; }
+    public string Message { get; set; }
+    public decimal ProcessedAmount { get; set; }
+}
 
 // OUTPUT:
 /*

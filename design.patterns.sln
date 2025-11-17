@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "structurals", "structurals", "{9FB1CD6F-66AD-47F3-A1D2-EEE8FD7AE74D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "creationals", "creationals", "{3915DC5A-50E7-40E6-91BB-48E59A6492D2}"
+	ProjectSection(SolutionItems) = preProject
+		doc_about_creationals.txt = doc_about_creationals.txt
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strategy", "behaviorals\Strategy\Strategy.csproj", "{041ACE0B-1D2A-4B03-9AE3-B9AC9DEB9FE1}"
 EndProject
