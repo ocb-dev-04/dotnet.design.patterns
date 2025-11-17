@@ -1,0 +1,127 @@
+﻿**************************************
+CREATIONAL PATTERNS - COMPARISON TABLE
+**************************************
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                    WHEN TO USE EACH PATTERN                                    ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SINGLETON
+├─ One instance needed globally
+├─ Configuration, logging, caching
+├─ Resource pooling (connections, threads)
+└─ Example: ConfigurationManager, Logger, ConnectionPool
+
+FACTORY METHOD
+├─ Type determined at runtime
+├─ Framework delegates creation to subclasses
+├─ Multiple implementations of same interface
+└─ Example: DocumentFactory, NotificationFactory
+
+ABSTRACT FACTORY
+├─ Families of related objects
+├─ Products must be used together
+├─ Multi-platform support
+└─ Example: UIFactory (Windows/Mac), DatabaseFactory (SQL/NoSQL)
+
+BUILDER
+├─ Complex object with many parameters
+├─ Step-by-step construction
+├─ Multiple representations
+└─ Example: HttpRequestBuilder, EmailBuilder, QueryBuilder
+
+PROTOTYPE
+├─ Object creation is expensive
+├─ Many similar objects needed
+├─ Avoid complex initialization
+└─ Example: Document templates, Game prefabs
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                           COMPLEXITY COMPARISON                                ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SINGLETON         ⭐⭐☆☆☆ (Simple)
+FACTORY METHOD    ⭐⭐⭐☆☆ (Moderate)
+BUILDER           ⭐⭐⭐☆☆ (Moderate)
+PROTOTYPE         ⭐⭐⭐⭐☆ (Complex - deep copy issues)
+ABSTRACT FACTORY  ⭐⭐⭐⭐⭐ (Most Complex)
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                         REAL-WORLD EXAMPLES                                    ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SINGLETON
+- IConfiguration in ASP.NET Core
+- ILogger instances
+- Database connection pools
+- HttpClient (should be singleton/static)
+
+FACTORY METHOD
+- DbProviderFactory (SQL Server, MySQL, PostgreSQL)
+- ILoggerFactory in ASP.NET Core
+- DocumentFactory in Office apps
+
+ABSTRACT FACTORY
+- System.Data.Common.DbProviderFactory
+- UI frameworks (WPF themes, Material Design)
+- Cross-platform libraries
+
+BUILDER
+- StringBuilder
+- UriBuilder
+- HttpRequestMessage construction
+- Fluent APIs (Entity Framework, LINQ)
+
+PROTOTYPE
+- ICloneable interface
+- MemberwiseClone() method
+- Prefabs in Unity game engine
+- Document templates in Office
+
+
+*****************************
+INTERVIEW QUESTIONS & ANSWERS
+*****************************
+
+Q: What's the difference between Factory Method and Abstract Factory?
+
+A: Factory Method creates ONE type of product, and subclasses decide which concrete
+   class to instantiate. Abstract Factory creates FAMILIES of related products.
+   
+   Example:
+   - Factory Method: DocumentFactory creates Documents (one product type)
+   - Abstract Factory: UIFactory creates Button + TextBox + CheckBox (family)
+
+Q: Why is Singleton considered an anti-pattern?
+
+A: Because it:
+   1. Creates global state (hard to test)
+   2. Hides dependencies (not obvious in constructor)
+   3. Violates Single Responsibility (manages instance + business logic)
+   4. Can cause issues in multi-threaded scenarios
+   
+   SOLUTION: Use Dependency Injection with singleton lifetime instead
+
+Q: When would you use Builder over Constructor?
+
+A: Use Builder when:
+   - Object has many optional parameters (telescoping constructor problem)
+   - Need step-by-step construction
+   - Want immutable objects with validation
+   
+   Example: 10+ optional parameters → Builder is cleaner than constructor
+
+Q: What's the difference between Shallow Copy and Deep Copy in Prototype?
+
+A: - Shallow Copy: Copies value types and references (both point to same objects)
+   - Deep Copy: Recursively copies all objects (independent copies)
+   
+   Use MemberwiseClone() for shallow, implement custom logic for deep
+
+Q: Can you combine patterns?
+
+A: YES! Common combinations:
+   - Singleton + Factory: Singleton factory that creates objects
+   - Builder + Factory Method: Factory returns builders
+   - Prototype + Registry: Store and clone prototypes
+   - Abstract Factory + Singleton: One factory instance per family

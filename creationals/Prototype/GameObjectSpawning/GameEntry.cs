@@ -1,4 +1,5 @@
-﻿using Prototype.GameObjectSpawning.Models;
+﻿using Prototype.GameObjectSpawning.Implementaions;
+using Prototype.GameObjectSpawning.Models;
 using Prototype.GameObjectSpawning.Registry;
 
 namespace Prototype.GameObjectSpawning;
@@ -7,19 +8,19 @@ public sealed class GameEntry
 {
     public static void SpawnObjects()
     {
-        var prefabManager = new PrefabManager();
+        PrefabManager prefabManager = new ();
 
         Console.WriteLine("\n=== Spawning Player Characters ===\n");
 
-        var warrior = prefabManager.Instantiate("warrior", new Vector3(0, 0, 0));
-        var mage = prefabManager.Instantiate("mage", new Vector3(2, 0, 0));
+        GameObject warrior = prefabManager.Instantiate("warrior", new Vector3(0, 0, 0));
+        GameObject mage = prefabManager.Instantiate("mage", new Vector3(2, 0, 0));
 
         Console.WriteLine(warrior);
         Console.WriteLine(mage);
 
         Console.WriteLine("\n=== Spawning Enemy Wave ===\n");
 
-        var goblins = prefabManager.SpawnWave("goblin", 5, 3.0f);
+        List<GameObject> goblins = prefabManager.SpawnWave("goblin", 5, 3.0f);
 
         Console.WriteLine($"\nSpawned {goblins.Count} goblins:");
         foreach (var goblin in goblins)
@@ -29,7 +30,7 @@ public sealed class GameEntry
 
         Console.WriteLine("\n=== Spawning Boss ===\n");
 
-        var dragon = prefabManager.Instantiate("dragon", new Vector3(50, 0, 50));
+        GameObject dragon = prefabManager.Instantiate("dragon", new Vector3(50, 0, 50));
         Console.WriteLine(dragon);
 
         // Modify one goblin - doesn't affect others
