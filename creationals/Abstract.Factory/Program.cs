@@ -1,7 +1,7 @@
 ﻿/*
 ABSTRACT FACTORY PATTERN
-🎯 Purpose
-"Proporciona una interfaz para crear familias de objetos relacionados sin especificar sus clases concretas"
+🎯Purpose
+"Provides an interface for creating families of related objects without specifying their concrete classes"
 📊 When to Use
 
 ✅ When you need to create families of related objects

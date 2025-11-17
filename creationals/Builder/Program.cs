@@ -1,13 +1,13 @@
 ﻿/*
 BUILDER PATTERN
 🎯 Purpose
-"Separar la construcción de un objeto complejo de su representación, permitiendo crear diferentes representaciones usando el mismo proceso de construcción"
+"To separate the construction of a complex object from its representation, allowing the creation of different representations using the same construction process"
 📊 When to Use
 
 ✅ Many optional parameters (telescoping constructors)
 ✅ Complex object initialization
 ✅ Step-by-step construction
-✅ Different representations of same object
+✅ Different representations of the same object
 
 ⚠️ When NOT to Use
 
