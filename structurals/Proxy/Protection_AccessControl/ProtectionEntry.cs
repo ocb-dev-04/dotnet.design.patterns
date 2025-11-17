@@ -4,38 +4,7 @@ using Proxy.Protection_AccessControl.Proxies;
 
 namespace Proxy.Protection_AccessControl;
 
-// OUTPUT:
-/*
-=== Regular User Access ===
-
-[Proxy] User John viewing balance
-[BankAccount] Current balance: $5,000.00
-[Proxy] User John depositing $100.00
-[BankAccount] Deposited $100.00. New balance: $5,100.00
-[Proxy] User John withdrawing $50.00
-[BankAccount] Withdrew $50.00. New balance: $5,050.00
-[Error] Only admins can withdraw more than $1000
-[Error] Only admins can view transaction history
-
-=== Admin User Access ===
-
-[Proxy] User Alice withdrawing $1,500.00
-[BankAccount] Withdrew $1,500.00. New balance: $3,550.00
-[Proxy] Admin Alice viewing transaction history
-[BankAccount] Transaction History:
-  - Account opened with $5,000.00
-  - Deposit: $100.00
-  - Withdrawal: $50.00
-  - Withdrawal: $1,500.00
-
-=== Read-Only User Access ===
-
-[Proxy] User Bob viewing balance
-[BankAccount] Current balance: $3,550.00
-[Error] You don't have permission to deposit
-*/
-
-public static class ProtectionEntry
+public sealed class ProtectionEntry
 {
     public static void Start()
     {
@@ -127,3 +96,34 @@ public static class ProtectionEntry
         }
     }
 }
+
+// OUTPUT:
+/*
+=== Regular User Access ===
+
+[Proxy] User John viewing balance
+[BankAccount] Current balance: $5,000.00
+[Proxy] User John depositing $100.00
+[BankAccount] Deposited $100.00. New balance: $5,100.00
+[Proxy] User John withdrawing $50.00
+[BankAccount] Withdrew $50.00. New balance: $5,050.00
+[Error] Only admins can withdraw more than $1000
+[Error] Only admins can view transaction history
+
+=== Admin User Access ===
+
+[Proxy] User Alice withdrawing $1,500.00
+[BankAccount] Withdrew $1,500.00. New balance: $3,550.00
+[Proxy] Admin Alice viewing transaction history
+[BankAccount] Transaction History:
+  - Account opened with $5,000.00
+  - Deposit: $100.00
+  - Withdrawal: $50.00
+  - Withdrawal: $1,500.00
+
+=== Read-Only User Access ===
+
+[Proxy] User Bob viewing balance
+[BankAccount] Current balance: $3,550.00
+[Error] You don't have permission to deposit
+*/

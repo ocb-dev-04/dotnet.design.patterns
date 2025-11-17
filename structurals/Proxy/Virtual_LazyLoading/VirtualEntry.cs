@@ -3,37 +3,7 @@ using Proxy.Virtual_LazyLoading.Proxies;
 
 namespace Proxy.Virtual_LazyLoading;
 
-// OUTPUT:
-/*
-Creating image proxies...
-
-[Proxy] Proxy created for: photo1.jpg
-[Proxy] Proxy created for: photo2.jpg
-[Proxy] Proxy created for: photo3.jpg
-
-Proxies created instantly!
-
-Image: photo1.jpg (not loaded yet)
-Image: photo2.jpg (not loaded yet)
-Image: photo3.jpg (not loaded yet)
-
-Displaying first image...
-[Proxy] Creating real image...
-[RealImage] Loading image from disk: photo1.jpg
-[RealImage] Image loaded: photo1.jpg
-[RealImage] Displaying image: photo1.jpg
-
-Displaying first image again...
-[RealImage] Displaying image: photo1.jpg
-
-Displaying second image...
-[Proxy] Creating real image...
-[RealImage] Loading image from disk: photo2.jpg
-[RealImage] Image loaded: photo2.jpg
-[RealImage] Displaying image: photo2.jpg
-*/
-
-public static class VirtualEntry
+public sealed class VirtualEntry
 {
     public static void Start()
     {
@@ -65,3 +35,33 @@ public static class VirtualEntry
 
     }
 }
+
+// OUTPUT:
+/*
+Creating image proxies...
+
+[Proxy] Proxy created for: photo1.jpg
+[Proxy] Proxy created for: photo2.jpg
+[Proxy] Proxy created for: photo3.jpg
+
+Proxies created instantly!
+
+Image: photo1.jpg (not loaded yet)
+Image: photo2.jpg (not loaded yet)
+Image: photo3.jpg (not loaded yet)
+
+Displaying first image...
+[Proxy] Creating real image...
+[RealImage] Loading image from disk: photo1.jpg
+[RealImage] Image loaded: photo1.jpg
+[RealImage] Displaying image: photo1.jpg
+
+Displaying first image again...
+[RealImage] Displaying image: photo1.jpg
+
+Displaying second image...
+[Proxy] Creating real image...
+[RealImage] Loading image from disk: photo2.jpg
+[RealImage] Image loaded: photo2.jpg
+[RealImage] Displaying image: photo2.jpg
+*/
