@@ -1,4 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿/*
+STRATEGY
+    Purpose: Select algorithm at runtime
+    When: Multiple algorithms for same task
+    Example: Payment methods, sorting strategies
+ */
+
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Strategy.Services;
 using Strategy.Strategies;

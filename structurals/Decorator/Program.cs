@@ -1,4 +1,11 @@
-﻿using Decorator.Abstractions;
+﻿/*
+DECORATOR
+   Purpose: Add responsibilities dynamically
+   When: Extend functionality without inheritance
+   Example: Coffee with milk/sugar, Repository with logging
+*/
+
+using Decorator.Abstractions;
 using Decorator.Decorators;
 using Decorator.Implementations;
 
