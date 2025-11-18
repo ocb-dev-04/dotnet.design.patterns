@@ -14,3 +14,9 @@ BRIDGE PATTERN
 ❌ If you only have one dimension of variation
 ❌ If abstraction and implementation are tightly coupled by nature
  */
+
+using Bridge.DatabaseAbstraction;
+using Bridge.MessageSending;
+
+NotificationSystem.SendNotifications();
+DatabaseEntry.DemonstratePattern();
